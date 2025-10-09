@@ -16,24 +16,36 @@ import javax.swing.Timer;
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	
 	//frame size
-	private int screenWidth = 900, screenHeight = 600;
-	private String title = "Duck Hunt";
+	private int screenWidth = 1225, screenHeight = 1900;
+	private String title = "Gotta Catch em' All!";
 	
 	
 	/**
 	 * Declare and instantiate (create) your objects here
 	 */
-	private Duck duckObject = new Duck();
+	// private Duck duckObject = new Duck();
+	private Background myBackground = new Background();
+	private Bush myBush = new Bush();
+	private Charmander myCharmander = new Charmander();
+	private Butterfree myButterfree = new Butterfree();
+	private Crosshair myCrosshair = new Crosshair();
 	
 	public void paint(Graphics pen) {
 		
 		//this line of code is to force redraw the entire frame
 		super.paintComponent(pen);
 		
+		//background should be drawn before the objects or based on what you want to LAYER
+		myBackground.paint(pen);
+		myBush.paint(pen);
+		myCharmander.paint(pen);
+		myButterfree.paint(pen);
+		myCrosshair.paint(pen);
+		
 		//call paint for the object
 		//for objects, you call methods on them using the dot operator
 		//methods use always involve parenthesis
-		duckObject.paint(pen);
+		// duckObject.paint(pen);
 		
 		
 		
