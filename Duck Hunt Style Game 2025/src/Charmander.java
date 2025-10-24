@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
+/*
 // The Duck class represents a picture of a duck that can be drawn on the screen.
 public class Charmander {
     // Instance variables (data that belongs to each Duck object)
@@ -35,6 +36,12 @@ public class Charmander {
         x = 500;
         y = 800;
 
+        
+        
+        if(y <= 700) {
+        	vy = 5;
+        }
+        
         init(x, y); // Set up the starting location and size
     }
     
@@ -74,7 +81,15 @@ public class Charmander {
     
     //update any variables for the object such as x, y, vx, vy
     public void update() {
+    	x += vx;
     	
+    	if (x >= 1100) {
+    		vx *= -1;
+    	}
+    	
+    	if (x <= -50) {
+    		vx *= -1;
+    	}
     }
     
     
@@ -119,3 +134,5 @@ public class Charmander {
         init(x, y);  // Keep current scale
     }
 }
+
+*/

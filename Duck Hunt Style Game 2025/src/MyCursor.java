@@ -1,12 +1,15 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
 // The Duck class represents a picture of a duck that can be drawn on the screen.
-public class FireAnimation {
+public class MyCursor {
     // Instance variables (data that belongs to each Duck object)
     private Image img;               // Stores the picture of the duck
     private AffineTransform tx;      // Used to move (translate) and resize (scale) the image
@@ -19,27 +22,26 @@ public class FireAnimation {
     private double x;                
     private double y;        
     
-    //variables for speed
-    private int vx;
-    private int vy;
 
     // Constructor: runs when you make a new Duck object
-    public FireAnimation() {
-        img = getImage("/imgs/myFireAnimation.gif"); // Load the image file
+    public MyCursor() { 
+    	
+        img = getImage("/imgs/cursor.png"); // Load the image file
         
         tx = AffineTransform.getTranslateInstance(0, 0); // Start with image at (0,0)
         
         // Default values
-        scaleX = .5;
-        scaleY = .5;
-        x = 500;
-        y = 800;
+        scaleX = 100;
+        scaleY = 100;
+        x = 0;
+        y = 0;
+
 
         init(x, y); // Set up the starting location and size
     }
     
     //2nd constructor to initialize location and scale!
-    public FireAnimation(int x, int y, int scaleX, int scaleY) {
+    public MyCursor(int x, int y, int scaleX, int scaleY) {
     	this();
     	this.x 		= x;
     	this.y 		= y;
@@ -49,21 +51,15 @@ public class FireAnimation {
     }
     
     //2nd constructor to initialize location and scale!
-    public FireAnimation(int x, int y, int scaleX, int scaleY, int vx, int vy) {
+    public MyCursor(int x, int y, int scaleX, int scaleY, int vx, int vy) {
     	this();
     	this.x 		= x;
     	this.y 		= y;
     	this.scaleX = scaleX;
     	this.scaleY = scaleY;
-    	this.vx 	= vx; 
-    	this.vy 	= vy;
     	init(x,y);
     }
-    
-    public void setVelocityVariables(int vx, int vy) {
-    	this.vx = vx;
-    	this.vy = vy;
-    }
+
     
     
     // Changes the picture to a new image file
@@ -72,18 +68,16 @@ public class FireAnimation {
         init(x, y); // keep same location when changing image
     }
     
-    //update any variables for the object such as x, y, vx, vy
-    public void update() {
-    	
-    }
-    
-    
-    
+   
     // Draws the duck on the screen
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;   // Graphics2D lets us draw images
+        tx.scale(scaleX, scaleY);//<-- original down or up scale
         g2.drawImage(img, tx, null);      // Actually draw the duck image
-        update();
+        
+    	x = MouseInfo.getPointerInfo().getLocation().getX()-50;
+    	y = MouseInfo.getPointerInfo().getLocation().getY()-50;
+
         init(x,y);
     }
     
@@ -97,7 +91,7 @@ public class FireAnimation {
     private Image getImage(String path) {
         Image tempImage = null;
         try {
-            URL imageURL = FireAnimation.class.getResource(path);
+            URL imageURL = MyCursor.class.getResource(path);
             tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,4 +112,8 @@ public class FireAnimation {
         y = newY;
         init(x, y);  // Keep current scale
     }
-}
+   
+    
+    
+    
+} //<--closing bracket for class dont delete- add above!

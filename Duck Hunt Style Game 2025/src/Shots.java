@@ -1,16 +1,38 @@
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
 // The Duck class represents a picture of a duck that can be drawn on the screen.
-public class FireAnimation {
+public class Shots {
+	
     // Instance variables (data that belongs to each Duck object)
     private Image img;               // Stores the picture of the duck
+    
+    private Image threeShot;
+    private Image twoShot;
+    private Image oneShot;
+    private Image noShot;
+    private int shotCount;
+    
     private AffineTransform tx;      // Used to move (translate) and resize (scale) the image
-
+    
     // Variables to control the size (scale) of the duck image
     private double scaleX;           
     private double scaleY;           
@@ -24,22 +46,29 @@ public class FireAnimation {
     private int vy;
 
     // Constructor: runs when you make a new Duck object
-    public FireAnimation() {
-        img = getImage("/imgs/myFireAnimation.gif"); // Load the image file
+    public Shots() {
+        threeShot = getImage("/imgs/threeShots.png"); // Load the image file
+        twoShot = getImage("/imgs/twoShots.png");
+        oneShot = getImage("/imgs/oneShot.png");
+        noShot = getImage("/imgs/noShots.png");
+        
+        img = threeShot;
         
         tx = AffineTransform.getTranslateInstance(0, 0); // Start with image at (0,0)
         
         // Default values
-        scaleX = .5;
-        scaleY = .5;
-        x = 500;
-        y = 800;
+        scaleX = .1;
+        scaleY = .1;
+        x = 75;
+        y = 900;
 
+        
+        
         init(x, y); // Set up the starting location and size
     }
     
     //2nd constructor to initialize location and scale!
-    public FireAnimation(int x, int y, int scaleX, int scaleY) {
+    public Shots(int x, int y, int scaleX, int scaleY) {
     	this();
     	this.x 		= x;
     	this.y 		= y;
@@ -49,7 +78,7 @@ public class FireAnimation {
     }
     
     //2nd constructor to initialize location and scale!
-    public FireAnimation(int x, int y, int scaleX, int scaleY, int vx, int vy) {
+    public Shots(int x, int y, int scaleX, int scaleY, int vx, int vy) {
     	this();
     	this.x 		= x;
     	this.y 		= y;
@@ -70,7 +99,18 @@ public class FireAnimation {
     public void changePicture(String imageFileName) {
         img = getImage("/imgs/"+imageFileName);
         init(x, y); // keep same location when changing image
-    }
+        
+        if (shotCount == 2) {
+        	img = twoShot;
+        }
+        if (shotCount == 1) {
+        	img = oneShot;
+        }
+        if (shotCount == 0) {
+        	img = noShot;
+        }
+        }
+        
     
     //update any variables for the object such as x, y, vx, vy
     public void update() {
@@ -97,7 +137,7 @@ public class FireAnimation {
     private Image getImage(String path) {
         Image tempImage = null;
         try {
-            URL imageURL = FireAnimation.class.getResource(path);
+            URL imageURL = Shots.class.getResource(path);
             tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
         } catch (Exception e) {
             e.printStackTrace();
@@ -116,6 +156,36 @@ public class FireAnimation {
     public void setLocation(double newX, double newY) {
         x = newX;
         y = newY;
-        init(x, y);  // Keep current scale
+        init(x, y); }  // Keep current scale
+        
+    public boolean switchImage() {
+    	if(shotCount == 3) {
+    		shotCount -= 1;
+    		img = twoShot;
+    		return false;
+    	}
+    	if(shotCount == 2) {
+    		shotCount -= 1;
+    		img = oneShot;
+    		return false;
+    	}
+    	if(shotCount == 1) {
+    		shotCount -= 1;
+    		img = noShot;
+    		return false;
+    	}
+    	return false;
     }
+    	    
+	public void mousePressed(MouseEvent mouse) {
+    // Runs when a mouse button is pressed down.
+    // Example: You could start dragging an object here.
+//	System.out.println(mouse.getX() + ":" +mouse.getY());
+		
+		switchImage();
+		
+	
+	}
 }
+
+

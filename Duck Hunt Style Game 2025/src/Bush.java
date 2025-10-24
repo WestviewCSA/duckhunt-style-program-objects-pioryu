@@ -30,10 +30,10 @@ public class Bush {
         tx = AffineTransform.getTranslateInstance(0, 0); // Start with image at (0,0)
         
         // Default values
-        scaleX = .4;
-        scaleY = .4;
-        x = 825;
-        y = 745;
+        scaleX = .3;
+        scaleY = .3;
+        x = 920;
+        y = 820;
 
         init(x, y); // Set up the starting location and size
     }

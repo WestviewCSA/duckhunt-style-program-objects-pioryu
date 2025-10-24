@@ -7,23 +7,23 @@ import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Duck{
+public class Dog{
 	private Image img; 	
 	private AffineTransform tx;
 	int width, height;
 	int x, y;						//position of the object
 	int vx, vy;						//movement variables
-	double scaleWidth = 1.0;		 //change to scale image
-	double scaleHeight = 1.0; //change to scale image
+	double scaleWidth = .2;		 //change to scale image
+	double scaleHeight = .2; //change to scale image
 
-	public Duck(String filename) {
+	public Dog(String filename) {
 		img = getImage("/imgs/"+filename); //load the image for Tree
 
 		//alter these
 		width = 0;
 		height = 0;
-		x = 0;
-		y = 0;
+		x = 500;
+		y = 800;
 		vx = 0;
 		vy = 0;
 		
@@ -49,7 +49,9 @@ public class Duck{
 		y+=vy;
 		
 		
-			
+		if(y <= 700) {
+        	vy = 5;
+        }
 		
 		
 		
