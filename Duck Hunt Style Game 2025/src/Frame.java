@@ -20,7 +20,7 @@ import javax.swing.Timer;
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	
 	//frame size
-	private int screenWidth = 1225, screenHeight = 1900;
+	private int screenWidth = 1225, screenHeight = 1800;
 	private String title = "Gotta Catch em' All!";
     
 
@@ -31,12 +31,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	// private Duck duckObject = new Duck();
 	private Background myBackground 		= new Background();
 	private Bush myBush 					= new Bush();
-	private Butterfree myButterfree 		= new Butterfree();
+	private Dog dog = 						new Dog("myCharmander.gif");
+	private Butterfree myButterfree 		= new Butterfree(dog);
 	private Crosshair myCrosshair 			= new Crosshair();
 	private MyCursor cursor 				= new MyCursor();
 	private FireAnimation myFireAnimation 	= new FireAnimation();
 	private Shots myShots 					= new Shots();
-	private Dog dog = 						new Dog("myCharmander.gif");
+	
 	
 	int shotcount = 3;
 	
@@ -52,8 +53,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		myBush.paint(pen);
 		myButterfree.paint(pen);
 		myCrosshair.paint(pen);
-		dog.paint(pen);
-		
+//		dog.paint(pen);
+
 		//call paint for the object
 		//for objects, you call methods on them using the dot operator
 		//methods use always involve parenthesis

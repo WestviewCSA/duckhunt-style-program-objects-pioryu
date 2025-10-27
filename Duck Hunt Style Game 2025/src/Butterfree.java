@@ -33,7 +33,7 @@ public class Butterfree {
 
     boolean debugging = true;
     // Constructor: runs when you make a new Duck object
-    public Butterfree() {
+    public Butterfree(Dog dog) {
     	
         normal = getImage("/imgs/Alive_Butterfree.gif"); // Load the image file
         dead = getImage("/imgs/DeadButterfree.gif"); //load the image file
@@ -55,12 +55,14 @@ public class Butterfree {
         vx = 5;
         vy = 3;
         
+        this.Dog = dog;
+        
         init(x, y); // Set up the starting location and size
     }
     
     //2nd constructor to initialize location and scale!
-    public Butterfree(int x, int y, int scaleX, int scaleY) {
-    	this();
+    public Butterfree(int x, int y, int scaleX, int scaleY, Dog dog) {
+    	this(dog);
     	this.x 		= x;
     	this.y 		= y;
     	this.scaleX = scaleX;
@@ -69,8 +71,8 @@ public class Butterfree {
     }
     
     //2nd constructor to initialize location and scale!
-    public Butterfree(int x, int y, int scaleX, int scaleY, int vx, int vy) {
-    	this();
+    public Butterfree(int x, int y, int scaleX, int scaleY, int vx, int vy, Dog dog) {
+    	this(dog);
     	this.x 		= x;
     	this.y 		= y;
     	this.scaleX = scaleX;
@@ -143,6 +145,9 @@ public class Butterfree {
         update();
         init(x,y);
         
+        if(this.y >= 720)
+        	this.Dog.paint(g);
+        
         //create a green hitbox
    //     if(debugging) {
    //     	g.setColor(Color.green);
@@ -188,7 +193,7 @@ public class Butterfree {
     	Rectangle mouse = new Rectangle(mX - 40, mY - 140, 50, 50);
     	
     	//represent this object as a Rectangle
-    	Rectangle thisObject = new Rectangle((int) x + 50, (int) y, 50, 50);
+    	Rectangle thisObject = new Rectangle((int) this.x + 50, (int) this.y, 50, 50);
     	
     	//use built-in method for Rectangle to check if the intersect! AKA collision
     	if(mouse.intersects(thisObject)) {

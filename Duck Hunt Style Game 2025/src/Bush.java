@@ -33,7 +33,9 @@ public class Bush {
         scaleX = .3;
         scaleY = .3;
         x = 920;
-        y = 820;
+        y = 780;
+        
+        //was 820 on school computer
 
         init(x, y); // Set up the starting location and size
     }
