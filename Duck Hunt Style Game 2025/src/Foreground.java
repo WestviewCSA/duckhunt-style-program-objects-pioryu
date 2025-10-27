@@ -6,7 +6,7 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 
 // The Duck class represents a picture of a duck that can be drawn on the screen.
-public class Bush {
+public class Foreground {
     // Instance variables (data that belongs to each Duck object)
     private Image img;               // Stores the picture of the duck
     private AffineTransform tx;      // Used to move (translate) and resize (scale) the image
@@ -24,24 +24,22 @@ public class Bush {
     private int vy;
 
     // Constructor: runs when you make a new Duck object
-    public Bush() {
-        img = getImage("/imgs/myBush.gif"); // Load the image file
+    public Foreground() {
+        img = getImage("/imgs/BetterForeground.png"); // Load the image file
         
         tx = AffineTransform.getTranslateInstance(0, 0); // Start with image at (0,0)
         
         // Default values
-        scaleX = .3;
-        scaleY = .3;
-        x = 920;
-        y = 820;
-        
-        //was 820 on school computer
+        scaleX = .53;
+        scaleY = .53;
+        x = 0;
+        y = 0;
 
         init(x, y); // Set up the starting location and size
     }
     
     //2nd constructor to initialize location and scale!
-    public Bush(int x, int y, int scaleX, int scaleY) {
+    public Foreground(int x, int y, int scaleX, int scaleY) {
     	this();
     	this.x 		= x;
     	this.y 		= y;
@@ -51,7 +49,7 @@ public class Bush {
     }
     
     //2nd constructor to initialize location and scale!
-    public Bush(int x, int y, int scaleX, int scaleY, int vx, int vy) {
+    public Foreground(int x, int y, int scaleX, int scaleY, int vx, int vy) {
     	this();
     	this.x 		= x;
     	this.y 		= y;
@@ -99,7 +97,7 @@ public class Bush {
     private Image getImage(String path) {
         Image tempImage = null;
         try {
-            URL imageURL = Bush.class.getResource(path);
+            URL imageURL = Foreground.class.getResource(path);
             tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
         } catch (Exception e) {
             e.printStackTrace();

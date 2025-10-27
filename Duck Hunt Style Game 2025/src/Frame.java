@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -23,7 +24,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	private int screenWidth = 1225, screenHeight = 1800;
 	private String title = "Gotta Catch em' All!";
     
-
+	private int totalScore = 0;
 	
 	/**
 	 * Declare and instantiate (create) your objects here
@@ -31,12 +32,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	// private Duck duckObject = new Duck();
 	private Background myBackground 		= new Background();
 	private Bush myBush 					= new Bush();
-	private Dog dog = 						new Dog("myCharmander.gif");
+	private Dog dog 						= new Dog("myCharmander.gif");
 	private Butterfree myButterfree 		= new Butterfree(dog);
 	private Crosshair myCrosshair 			= new Crosshair();
 	private MyCursor cursor 				= new MyCursor();
 	private FireAnimation myFireAnimation 	= new FireAnimation();
 	private Shots myShots 					= new Shots();
+	private Foreground myForeground 		= new Foreground();
+	private Music mouseClickSound 			= new Music("Explosion.wav", false);
 	
 	
 	int shotcount = 3;
@@ -49,12 +52,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//background should be drawn before the objects or based on what you want to LAYER
 		cursor.paint(pen);
 		myBackground.paint(pen);
-		myShots.paint(pen);
-		myBush.paint(pen);
 		myButterfree.paint(pen);
+		myForeground.paint(pen);
+		myBush.paint(pen);
+		myShots.paint(pen);
 		myCrosshair.paint(pen);
 //		dog.paint(pen);
 
+		Font f = new Font("Segoe UI", Font.PLAIN, 40);
+		pen.setFont(f);
+		pen.drawString("" + totalScore, 745, 50);
 		//call paint for the object
 		//for objects, you call methods on them using the dot operator
 		//methods use always involve parenthesis
@@ -92,9 +99,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		myButterfree.checkCollision(mouse.getX(), mouse.getY());
 		
-		if(!myButterfree.checkCollision(screenWidth, screenHeight)) {
-			shotcount -= 1;
+		if(myButterfree.checkCollision(mouse.getX(), mouse.getY())) {
+			totalScore += 100;
 		}
+		
+		this.mouseClickSound.play();
 	}
 
 	@Override
