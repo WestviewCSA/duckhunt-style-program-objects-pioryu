@@ -39,7 +39,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	private FireAnimation myFireAnimation 	= new FireAnimation();
 	private Shots myShots 					= new Shots();
 	private Foreground myForeground 		= new Foreground();
-	private Music mouseClickSound 			= new Music("Explosion.wav", false);
+	private Music mouseClickSound 			= new Music("Fire.wav", false);
 	
 	
 	int shotcount = 3;
