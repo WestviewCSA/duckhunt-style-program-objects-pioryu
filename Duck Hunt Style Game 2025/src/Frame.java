@@ -42,12 +42,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	private oneShot myOneShot 				= new oneShot();
 	private noShot myNoShot 				= new noShot();
 	private Foreground myForeground 		= new Foreground();
-	private int Bullets = 3;
-	private Music mouseClickSound 			= new Music("GhostFire.wav", false);
+	private Hit1 myHit1 					= new Hit1();
+	private Hit2 myHit2 					= new Hit2();
+	private Hit3 myHit3 					= new Hit3();
+	private Hit4 myHit4 					= new Hit4();
+	private Hit5 myHit5 					= new Hit5();
+	private int Bullets 					= 3;
+	private Music mouseClickSound 			= new Music("sfx_wpn_laser9.wav", false);
 	
 	
 	
-	int shotcount = 3;
 	
 	public void paint(Graphics pen) {
 		
@@ -64,6 +68,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		myTwoShot.paint(pen);
 		myOneShot.paint(pen);
 		myNoShot.paint(pen);
+		myHit1.paint(pen);
 		myCrosshair.paint(pen);
 //		dog.paint(pen);
 
@@ -75,6 +80,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//methods use always involve parenthesis
 		// duckObject.paint(pen);
 		
+		
+		
+		if (Bullets == 3) {
+			myThreeShot.paint(pen);
+		}
+		
+		if (Bullets == 2) {
+			myTwoShot.paint(pen);
+		}
+		
+		if (Bullets == 1) {
+			myOneShot.paint(pen);
+		}
+		
+		if (Bullets == 0) {
+			myNoShot.paint(pen);
+		}
 		
 		
 	}
@@ -105,31 +127,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	    // Example: You could start dragging an object here.
 	//	System.out.println(mouse.getX() + ":" +mouse.getY());
 		
-		myButterfree.checkCollision(mouse.getX(), mouse.getY());
-		
+		boolean hit = myButterfree.checkCollision(mouse.getX(), mouse.getY());
+		Bullets--;
 		if(myButterfree.checkCollision(mouse.getX(), mouse.getY())) {
 			totalScore += 100;
+			Bullets = 3;
 		}
 		
-		if(Bullets == 3) {
-			myThreeShot.setLocation(-1000, -1000);
-			Bullets --;
-		}
 		
-		if(Bullets == 2) {
-			myTwoShot.setLocation(-1000, -1000);
-			Bullets --;
-		}
-		
-		if(Bullets == 1) {
-			myOneShot.setLocation(-1000, -1000);
-			Bullets --;
-		}
-		
-		if(Bullets <= 0) {
-			System.out.println("Game Over");
-			//find a way to reset the game
-		}
 		
 		this.mouseClickSound.play();
 	}
