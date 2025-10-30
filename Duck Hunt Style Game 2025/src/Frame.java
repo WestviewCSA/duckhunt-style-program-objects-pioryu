@@ -37,9 +37,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	private Crosshair myCrosshair 			= new Crosshair();
 	private MyCursor cursor 				= new MyCursor();
 	private FireAnimation myFireAnimation 	= new FireAnimation();
-	private Shots myShots 					= new Shots();
+	private threeShot myThreeShot 			= new threeShot();
+	private twoShot myTwoShot 				= new twoShot();
+	private oneShot myOneShot 				= new oneShot();
+	private noShot myNoShot 				= new noShot();
 	private Foreground myForeground 		= new Foreground();
-	private Music mouseClickSound 			= new Music("Fire.wav", false);
+	private int Bullets = 3;
+	private Music mouseClickSound 			= new Music("GhostFire.wav", false);
+	
 	
 	
 	int shotcount = 3;
@@ -55,7 +60,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		myButterfree.paint(pen);
 		myForeground.paint(pen);
 		myBush.paint(pen);
-		myShots.paint(pen);
+		myThreeShot.paint(pen);
+		myTwoShot.paint(pen);
+		myOneShot.paint(pen);
+		myNoShot.paint(pen);
 		myCrosshair.paint(pen);
 //		dog.paint(pen);
 
@@ -101,6 +109,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		if(myButterfree.checkCollision(mouse.getX(), mouse.getY())) {
 			totalScore += 100;
+		}
+		
+		if(Bullets == 3) {
+			myThreeShot.setLocation(-1000, -1000);
+			Bullets --;
+		}
+		
+		if(Bullets == 2) {
+			myTwoShot.setLocation(-1000, -1000);
+			Bullets --;
+		}
+		
+		if(Bullets == 1) {
+			myOneShot.setLocation(-1000, -1000);
+			Bullets --;
+		}
+		
+		if(Bullets <= 0) {
+			System.out.println("Game Over");
+			//find a way to reset the game
 		}
 		
 		this.mouseClickSound.play();

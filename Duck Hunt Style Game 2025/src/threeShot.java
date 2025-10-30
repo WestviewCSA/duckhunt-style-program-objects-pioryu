@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 // The Duck class represents a picture of a duck that can be drawn on the screen.
-public class Shots {
+public class threeShot {
 	
     // Instance variables (data that belongs to each Duck object)
     private Image img;               // Stores the picture of the duck
@@ -46,7 +46,7 @@ public class Shots {
     private int vy;
 
     // Constructor: runs when you make a new Duck object
-    public Shots() {
+    public threeShot() {
         threeShot = getImage("/imgs/threeShots.png"); // Load the image file
         twoShot = getImage("/imgs/twoShots.png");
         oneShot = getImage("/imgs/oneShot.png");
@@ -68,7 +68,7 @@ public class Shots {
     }
     
     //2nd constructor to initialize location and scale!
-    public Shots(int x, int y, int scaleX, int scaleY) {
+    public threeShot(int x, int y, int scaleX, int scaleY) {
     	this();
     	this.x 		= x;
     	this.y 		= y;
@@ -78,7 +78,7 @@ public class Shots {
     }
     
     //2nd constructor to initialize location and scale!
-    public Shots(int x, int y, int scaleX, int scaleY, int vx, int vy) {
+    public threeShot(int x, int y, int scaleX, int scaleY, int vx, int vy) {
     	this();
     	this.x 		= x;
     	this.y 		= y;
@@ -137,7 +137,7 @@ public class Shots {
     private Image getImage(String path) {
         Image tempImage = null;
         try {
-            URL imageURL = Shots.class.getResource(path);
+            URL imageURL = threeShot.class.getResource(path);
             tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
         } catch (Exception e) {
             e.printStackTrace();
