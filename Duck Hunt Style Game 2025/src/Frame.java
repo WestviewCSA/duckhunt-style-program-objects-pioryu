@@ -49,6 +49,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	private Hit5 myHit5 					= new Hit5();
 	private int Bullets 					= 3;
 	private Music mouseClickSound 			= new Music("sfx_wpn_laser9.wav", false);
+	private Music myBackgroundMusic 		= new Music("BackgroundMusic.wav", true);
 	
 	
 	
@@ -84,10 +85,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		if (Bullets == 3) {
 			myThreeShot.paint(pen);
+			this.myBackgroundMusic.play();
 		}
 		
 		if (Bullets == 2) {
 			myTwoShot.paint(pen);
+			
 		}
 		
 		if (Bullets == 1) {
@@ -96,6 +99,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		if (Bullets == 0) {
 			myNoShot.paint(pen);
+			Font t = new Font("Segoe UI", Font.PLAIN, 100);
+			pen.setFont(t);
+			pen.drawString("GAME OVER", 500, 400);
 		}
 		
 		
