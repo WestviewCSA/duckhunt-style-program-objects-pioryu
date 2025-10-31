@@ -85,7 +85,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		if (Bullets == 3) {
 			myThreeShot.paint(pen);
-		//	this.myBackgroundMusic.play();
+			this.myBackgroundMusic.play();
 		}
 		
 		if (Bullets == 2) {
