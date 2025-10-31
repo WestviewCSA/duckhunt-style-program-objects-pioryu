@@ -48,7 +48,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	private Hit4 myHit4 					= new Hit4();
 	private Hit5 myHit5 					= new Hit5();
 	private int Bullets 					= 3;
-	private Music mouseClickSound 			= new Music("sfx_wpn_laser9.wav", false);
+	private Music mouseClickSound 			= new Music("DragonFire.wav", false);
 	private Music myBackgroundMusic 		= new Music("BackgroundMusic.wav", true);
 	
 	
