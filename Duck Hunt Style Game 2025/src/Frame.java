@@ -75,7 +75,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 		Font f = new Font("Segoe UI", Font.PLAIN, 40);
 		pen.setFont(f);
-		pen.drawString("" + totalScore, 745, 50);
+		pen.drawString("SCORE: " + totalScore, 745, 50);
 		//call paint for the object
 		//for objects, you call methods on them using the dot operator
 		//methods use always involve parenthesis
@@ -85,7 +85,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		if (Bullets == 3) {
 			myThreeShot.paint(pen);
-			this.myBackgroundMusic.play();
+		//	this.myBackgroundMusic.play();
 		}
 		
 		if (Bullets == 2) {
